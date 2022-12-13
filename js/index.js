@@ -3,7 +3,7 @@ let FEATURED_MOVIES=`http://localhost:3000/films`
 document.addEventListener(`DOMContentLoaded`, () => {
  
      // create featured movies element
-     const createFeaturedMovies =(image, title, description)=>{
+     const createFeaturedMovies =(image, title, description, time, duration, tickets)=>{
         const mainDiv = document.createElement(`div`)
         mainDiv.classList.add(`card`,`col-12`)
 
@@ -28,9 +28,24 @@ document.addEventListener(`DOMContentLoaded`, () => {
         movieDescription.classList.add(`card-text`)
         movieDescription.innerText=description
 
+        const movieTime = document.createElement(`p`)
+        movieTime.classList.add(`card-title`)
+        movieTime.innerText=time
+
+        const movieDuration = document.createElement(`p`)
+        movieDuration.classList.add(`card-title`)
+        movieDuration.innerText=duration
+
+        const ticks = document.createElement(`p`)
+        ticks.classList.add(`card-text`)
+        ticks.innerText=tickets
+
         //appending
         cardBody.appendChild(movieTitle)
         cardBody.appendChild(movieDescription)
+        cardBody.appendChild(movieTime)
+        cardBody.appendChild(movieDuration)
+        cardBody.appendChild(ticks)
 
         imgDiv.appendChild(moviePoster)
 
@@ -43,23 +58,36 @@ document.addEventListener(`DOMContentLoaded`, () => {
      }
 
       //load featured movies
- const loadFeaturedMovies = () => {
+    const loadFeaturedMovies = () => {
     fetch(FEATURED_MOVIES)
-    .then((response) => response.json)
+    .then((response) => response.json())
     .then((data) =>{
-        const filmsData = data.films[0]
+        for(let i=0; i<data.length; i++){
+
+        const filmsData = data[i]
+    
         const name = filmsData.title
+    
         const description = filmsData.description
+    
         const image = filmsData.poster
-        const featuredMovie =createFeaturedMovies(image, name, description)
+
+        const time = filmsData.showtime
+
+        const duration = filmsData.runtime
+
+        const tickets = filmsData.tickets_sold
+    
+        const featuredMovie =createFeaturedMovies(image, name, description, time, duration, tickets)
+    
         document.getElementById(`featured movies`).appendChild(featuredMovie)
+    
+    }
+        
     })
   
 }
 loadFeaturedMovies()
-
-
-// create all movies element
 
 
 
