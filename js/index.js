@@ -111,13 +111,41 @@ const createMovieList = (tag, photo) => {
     movieTag.classList.add(`tag`)
     movieTag.innerText=tag
 
-    return divMain
-
     //appending 
-    bodyDiv.appendChild
+    bodyDiv.appendChild(movieTag)
+    photoDiv.appendChild(moviePhoto)
+
+    divRow.appendChild(photoDiv)
+    divRow.appendChild(bodyDiv)
+
+    divMain.appendChild(divRow)
     
 }
 createMovieList()
+//load movie list
+
+const loadMovieList = () => {
+    fetch(FEATURED_MOVIES)
+    .then((response) => response.json())
+    .then((data) =>{
+        for(let i=0; i<data.length; i++){
+            const movieData = data[i]
+            
+            const tag = movieData.title
+
+            const photo = movieData.poster
+
+            const movieList = createMovieList(tag, photo)
+
+            document.getElementById(`movie list`).appendChild(movieList)
+        }
+
+    })
+    loadMovieList()
+}
+
+
+
 })
 
 
