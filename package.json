@@ -1,0 +1,23 @@
+{
+  "name": "code_challangeiii",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch db.json",
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryan605/code_challangeIII.git"
+  },
+  "author": "ryan langat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryan605/code_challangeIII/issues"
+  },
+  "homepage": "https://github.com/ryan605/code_challangeIII#readme",
+  "dependencies": {
+    "json-server": "^0.17.1"
+  }
+}
