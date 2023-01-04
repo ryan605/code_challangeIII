@@ -89,39 +89,33 @@ document.addEventListener(`DOMContentLoaded`, () => {
 }
 loadFeaturedMovies()
 //movie list
-const createMovieList = (tag, photo) => {
+const createMovieList = (tag) => {
 
     const divMain = document.createElement(`div`)
-    divMain.classList.add(`col-4`)
+    divMain.classList.add(`row`,`mt-3`)
 
-    const divRow = document.createElement(`div`)
-    divRow.classList.add(`row`)
-
-    const photoDiv = document.createElement(`div`)
-    photoDiv.classList.add(`img-top`)
-
-    const moviePhoto = document.createElement(`img`)
-    moviePhoto.classList.add(`movie-img`)
-    moviePhoto.src=photo
+    const cardDiv = document.createElement(`div`)
+    cardDiv.classList.add(`card`,`col-4`)
 
     const bodyDiv = document.createElement(`div`)
     bodyDiv.classList.add(`movie-tag`)
 
-    const movieTag = document.createElement(`h2`)
-    movieTag.classList.add(`tag`)
+    const headerDiv = document.createElement(`h3`)
+    headerDiv.classList.add(`tag`)
+
+    const movieTag = document.createElement(`li`)
+    movieTag.classList.add(`names`)
     movieTag.innerText=tag
 
     //appending 
-    bodyDiv.appendChild(movieTag)
-    photoDiv.appendChild(moviePhoto)
+   headerDiv.appendChild(movieTag)
+   bodyDiv.appendChild(headerDiv)
+   cardDiv.appendChild(bodyDiv)
+   divMain.appendChild(cardDiv)
 
-    divRow.appendChild(photoDiv)
-    divRow.appendChild(bodyDiv)
-
-    divMain.appendChild(divRow)
-    
+    return divMain
 }
-createMovieList()
+
 //load movie list
 
 const loadMovieList = () => {
@@ -133,17 +127,15 @@ const loadMovieList = () => {
             
             const tag = movieData.title
 
-            const photo = movieData.poster
-
-            const movieList = createMovieList(tag, photo)
+            const movieList = createMovieList(tag)
 
             document.getElementById(`movie list`).appendChild(movieList)
         }
 
     })
-    loadMovieList()
-}
 
+}
+loadMovieList()
 
 
 })
