@@ -1,6 +1,19 @@
 //URLS
 let FEATURED_MOVIES=`http://localhost:3000/films`
 document.addEventListener(`DOMContentLoaded`, () => {
+    //event listiners
+    const movieName = document.getElementById(`movie list`)
+    const allMovies = document.getElementById(`featured movies`)
+    const mainMenu = document.getElementById(`category-link`)
+
+    movieName.addEventListener(`click`,() => {
+        allMovies.removeAttribute("hidden")
+        allMovies.style.display="flex"
+    })
+    mainMenu.addEventListener(`click`,() => {
+        movieName.style.display="flex"
+        allMovies.style.display="hidden"
+    })
  
      // create featured movies element
      const createFeaturedMovies =(image, title, description, time, duration, tickets)=>{
